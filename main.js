@@ -8,7 +8,7 @@ const rgba = require("color-rgba");
 const { Bulb } = require("yeelight.io");
 // light package
 
-const l1 = new Bulb(" LIGHT_IP_HERE");
+const l1 = new Bulb("10.0.0.4");
 l1.connect();
 // light IP address and connect function call
 
@@ -26,7 +26,7 @@ function home() {
     const home = await prompts({
       type: "text",
       name: "input",
-      message: "" + chalk.bgWhite.black(options).split(","),
+      message: chalk.bgWhite.black(options[0]) + ' ' + chalk.bgWhite.black(options[1]) + ' ' + chalk.bgWhite.black(options[2]) + ' ' + chalk.bgWhite.black(options[3]),
     });
 
     switch (home.input) {
@@ -52,12 +52,12 @@ function home() {
 // home function aka 'Main Menu'
 
 function brightness() {
-  let options = ["min", "25", "50", "75", "max", "back"];
+  let options = ["min", "25", "50", "75", "max", "home"];
   (async () => {
     const brightness = await prompts({
       type: "text",
       name: "input",
-      message: "" + chalk.bgWhite.black(options),
+      message: chalk.bgWhite.black(options[0]) + ' ' + chalk.bgWhite.black(options[1]) + ' ' + chalk.bgWhite.black(options[2]) + ' ' + chalk.bgWhite.black(options[3]) + ' ' + chalk.bgWhite.black(options[4]) + ' ' + chalk.bgWhite.black(options[5]),
     });
 
     switch (brightness.input) {
@@ -97,12 +97,15 @@ function color() {
     const color = await prompts({
       type: "text",
       name: "input",
-      message: "choose a color for your light",
+      message: `${chalk.bgWhite.black('choose color')}`,
     });
-
     let cRGBA = rgba(color.input);
-    console.log(cRGBA);
-    l1.color(rgba(color.input).split("[", "]"));
+    let cArg0 = cRGBA[0];
+    let cArg1 = cRGBA[1];
+    let cArg2 = cRGBA[2];
+    l1.color(cArg0, cArg1, cArg2);
+    console.log(`${chalk.green('color')} changed to ${chalk.cyan(color.input)}`);
+    home();
   })();
 }
 // color function to change light color
