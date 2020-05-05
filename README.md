@@ -1,2 +1,2 @@
-# yee-control
+# yee.ctrl
  Terminal based Yee Light control panel
