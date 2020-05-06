@@ -20,14 +20,21 @@ Turns the connected light on or off.
 Here is a brief list of prerequisites needed in order to get started with Y E E . C T R L.
 
 #### Terminal
-* [Hyper Terminal] (https://hyper.is/) - The only terminal used to test the application so far. If you have used a different terminal and it works, let me know and I'll add it to the list!
+* [Hyper Terminal](https://hyper.is/) - The only terminal used to test the application so far. If you have used a different terminal and it works, let me know and I'll add it to the list!
 
 #### Node Packages
-* [Chalk] (https://www.npmjs.com/package/chalk) - Used to color the text for easier reading.
-* [Color-RGBA] (https://www.npmjs.com/package/color-rgba) - Converts string inputs into RGB values.
-* [Prompts] (https://www.npmjs.com/package/prompts) - Creates prompts for the terminal.
-* [Yeelight.io] (https://www.npmjs.com/package/yeelight.io) - Utilizes the Yeelight API for easier use.
+* [Chalk](https://www.npmjs.com/package/chalk) - Used to color the text for easier reading.
+* [Color-RGBA](https://www.npmjs.com/package/color-rgba) - Converts string inputs into RGB values.
+* [Prompts](https://www.npmjs.com/package/prompts) - Creates prompts for the terminal.
+* [Yeelight.io](https://www.npmjs.com/package/yeelight.io) - Utilizes the Yeelight API for easier use.
 
 #### Other
-* [Node] (https://nodejs.org/en/) - Required for the application, given it was written in NodeJS.
-* [Node Package Manager] (https://www.npmjs.com/) - Required for installing the packages noted above.
+* [Node](https://nodejs.org/en/) - Required for the application, given it was written in NodeJS.
+* [Node Package Manager](https://www.npmjs.com/) - Required for installing the packages noted above.
+
+## S C R E E N S H O T
+
+![Demostration of Y E E . C T R L in terminal](https://i.imgur.com/WDpB90t.png)
+
+## A U T H O R ( S )
+* [Dion Hobdy](https://github.com/hobdydion) - Project Lead/Starter
