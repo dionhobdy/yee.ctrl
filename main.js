@@ -1,5 +1,8 @@
 'use strict';
 
+require('events').EventEmitter.prototype._maxListeners = 25;
+// event dependency with listener cap to prevent memory leak
+
 const chalk = require("chalk");
 const prompts = require("prompts");
 //console packages
@@ -10,14 +13,14 @@ const rgba = require("color-rgba");
 const { Bulb } = require("yeelight.io");
 // light package
 
-const l1 = new Bulb("BULB_IP");
+const l1 = new Bulb("10.0.0.4");
 l1.connect();
 // light IP address and connect function call
 
 l1.on("connected", (light) => {
-  console.log(`${chalk.cyan("Y E E - C O N T R O L")}`);
+  console.log(`${chalk.cyan("Y E E . C T R L")}`);
   // app title
-  console.log(`${chalk.green("connected")} to ${chalk.cyan(light.ip)}`);
+  console.log(`${chalk.green("connected")} to ${chalk.cyan(light.ip)}.`);
   home();
 });
 // light on connection
@@ -30,7 +33,7 @@ function home() {
       name: "input",
       message: chalk.bgWhite.black(options[0]) + ' ' + chalk.bgWhite.black(options[1]) + ' ' + chalk.bgWhite.black(options[2]) + ' ' + chalk.bgWhite.black(options[3]),
     });
-
+    
     switch (home.input) {
       case options[0]:
         brightness();
@@ -45,9 +48,7 @@ function home() {
         toggle();
         break;
       default:
-        console.log(
-          `${chalk.red("error")} invalid option chosen please reset app`
-        );
+        inErr();
     }
   })();
 }
@@ -87,7 +88,7 @@ function brightness() {
         home();
         break;
       default:
-        console.log(`${chalk.red("error")} invalid option chosen`);
+        console.log(`${chalk.red("error")} invalid option chosen.`);
         home();
     }
   })();
@@ -102,24 +103,39 @@ function color() {
       message: `${chalk.bgWhite.black('choose color')}`,
     });
     let cRGBA = rgba(color.input);
-    let cArg0 = cRGBA[0];
-    let cArg1 = cRGBA[1];
-    let cArg2 = cRGBA[2];
-    l1.color(cArg0, cArg1, cArg2);
-    console.log(`${chalk.green('color')} changed to ${chalk.cyan(color.input)}`);
+    let cAr0 = cRGBA[0];
+    let cAr1 = cRGBA[1];
+    let cAr2 = cRGBA[2];
+    l1.color(cAr0, cAr1, cAr2);
+    console.log(`${chalk.green('color')} changed to ${chalk.cyan(color.input)}.`);
     home();
   })();
 }
 // color function to change light color
-
+ 
 function disconnect() {
   l1.disconnect();
   l1.on("disconnected", (light) => {
-    console.log(`${chalk.cyan(" T H A N K - Y O U")}`);
-    console.log(`${chalk.green("disconencted")} from ${chalk.cyan(light.ip)}`);
+    console.log(`${chalk.cyan("T H N K . Y O U")}`);
+    console.log(`${chalk.green("disconencted")} from ${chalk.cyan(light.ip)}.`);
   });
 }
 // disconnect function to disconnect from light
+
+function inErr() {
+  let cRGBA = rgba('red');
+    let cAr0 = cRGBA[0];
+    let cAr1 = cRGBA[1];
+    let cAr2 = cRGBA[2];
+    l1.color(cAr0, cAr1, cAr2);
+    console.log(
+      `${chalk.red("error")} invalid option chosen. select valid option.`
+    );
+    setInterval(toggle, 1000);
+}
+// input error function which changes color to red and pulses
+
+
 
 function toggle() {
   l1.toggle();
