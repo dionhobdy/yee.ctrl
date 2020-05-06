@@ -13,7 +13,7 @@ const rgba = require("color-rgba");
 const { Bulb } = require("yeelight.io");
 // light package
 
-const l1 = new Bulb("10.0.0.4");
+const l1 = new Bulb("LIGHT_IP");
 l1.connect();
 // light IP address and connect function call
 
