@@ -34,7 +34,7 @@ Here is a brief list of prerequisites needed in order to get started with Y E E 
 
 ## S C R E E N S H O T
 
-![Demostration of Y E E . C T R L in terminal](https://i.imgur.com/WDpB90t.png)
+![Demostration of Y E E . C T R L in terminal](https://i.imgur.com/AhqCsmO.png)
 
 ## A U T H O R ( S )
 * [Dion Hobdy](https://github.com/hobdydion) - Project Lead/Starter
