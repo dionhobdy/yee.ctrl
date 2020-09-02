@@ -2,8 +2,8 @@ const chalk = require("chalk");
 
 const { Bulb } = require("yeelight.io"); // light package
 
-const l1 = new Bulb("10.0.0.4");
-const l2 = new Bulb("10.0.0.22");
+const l1 = new Bulb("LIGHT_IP 1");
+const l2 = new Bulb("LIGHT_IP 2");
 l1.connect(); 
 l2.connect(); // light IP address and connect function call
 
