@@ -1,13 +1,18 @@
-const chalk = require('chalk'); // client packageds
+const chalk = require('chalk'); // client packages
 
 const main = require('../main'); // module imports
 
-function disconnect() {
+function initDis() {
     main.l1.disconnect();
-    main.l1.on("disconnected", (light) => {
-      console.log(`${chalk.cyan("T H N K . Y O U")}`);
-      console.log(`${chalk.green("disconencted")} from ${chalk.cyan(light.ip)}.`);
+    main.l1.on("disconnected", (light1) => {
+      console.log(`${chalk.green("disconnected")} from ${chalk.cyan(`l1 ${light1.ip}`)}`);
+      
+      main.l2.disconnect();
+      main.l2.on("disconnected", (light2) => {
+      console.log(`${chalk.green("disconnected")} from ${chalk.cyan(`l2 ${light2.ip}`)}`);
+      console.log(`${chalk.cyan("T H A N K . Y O U")}`);
+    });
     });
   } // disconnect function to disconnect from light
 
-  exports.disconnect = disconnect;
+  exports.initDis = initDis;

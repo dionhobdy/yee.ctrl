@@ -2,65 +2,43 @@ const chalk = require("chalk");
 const prompts = require("prompts");
 // console packages
 
-const m = require('../home');
+const menu = require('../home');
 const main = require('../main');
 // module imports
 
-function brightness() {
-  let options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+const all = require('./brightness commands/allbright');
+const l1 = require('./brightness commands/l1bright');
+const l2 = require('./brightness commands/l2bright');
+// brightness commands
+
+function initBri() {
+
+  let options = ['all', 'l1', 'l2', 'home'];
     (async () => {
-      const brightness = await prompts({
+      const device = await prompts({
         type: "text",
         name: "input",
-        message: `input brightness ${chalk.bgWhite.black('1 - 10')}`,
+        message: `brightness options ${chalk.bgWhite.black(options[0])} ${chalk.bgWhite.black(options[1])} ${chalk.bgWhite.black(options[2])} ${chalk.bgWhite.black(options[3])}`,
       });
-      
-      switch(brightness.input) {
+
+      switch(device.input) {
         case options[0]:
-          main.l1.brightness(1);
-          m.home();
+          all.bright();
           break;
         case options[1]:
-          main.l1.brightness(10);
-          m.home();
+          l1.bright();
           break;
         case options[2]:
-          main.l1.brightness(20);
-          m.home();
+          l2.bright();
           break;
         case options[3]:
-          main.l1.brightness(30);
-          m.home();
-          break;
-        case options[4]:
-          main.l1.brightness(40);
-          m.home();
-          break;
-        case options[5]:
-          main.l1.brightness(50);
-          m.home();
-          break;
-        case options[6]:
-          main.l1.brightness(60);
-          m.home();
-          break;
-        case options[7]:
-          main.l1.brightness(70);
-          m.home();
-          break;
-        case options[8]:
-          main.l1.brightness(80);
-          m.home();
-          break;
-        case options[9]:
-          main.l1.brightness(90);
-          m.home();
+          menu.home();
           break;
         default:
-          console.log(`${chalk.red('error')} please input the proper option`)
-          m.home();
+          console.log(`${chalk.red('error')} please input valid option`);
+          inputErr();
       }
     })();
-  } // brightness function to choose light brightness
+  } // bulb input function for brightness controls
 
-exports.brightness = brightness;
+exports.initBri = initBri;

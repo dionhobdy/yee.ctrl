@@ -1,35 +1,36 @@
 const prompts = require('prompts');
-const chalk = require('chalk'); // console packages
+const chalk = require('chalk'); // imported console packages
 
-const rgba = require("color-rgba"); // color conversion package
-
-const b = require('./commands/brightness');
-const c = require('./commands/color');
-const d = require('./commands/disconnect');
-const main = require('./main');
-const t = require('./commands/toggle'); // module imports
+const brightness = require('./commands/brightness');
+const color = require('./commands/color');
+const disconnect = require('./commands/disconnect');
+const preset = require('./commands/presets');
+const toggle = require('./commands/toggle'); // module imports
 
 function home() {
-      let options = ["brightness", "color", "disconnect", "toggle"];
+      let options = ["brightness", "color", "disconnect", "preset", "toggle"];
       (async () => {
         const home = await prompts({
           type: "text",
           name: "input",
-          message: `home options ${chalk.bgWhite.black(options[0])} ${chalk.bgWhite.black(options[1])} ${chalk.bgWhite.black(options[2])} ${chalk.bgWhite.black(options[3])}`,
+          message: `home options ${chalk.bgWhite.black(options[0])} ${chalk.bgWhite.black(options[1])} ${chalk.bgWhite.black(options[2])} ${chalk.bgWhite.black(options[3])} ${chalk.bgWhite.black(options[4])}`,
         });
         
         switch (home.input) {
           case options[0]:
-            b.brightness(); 
+            brightness.initBri(); 
             break;
           case options[1]:
-            c.color();
+            color.initCol();
             break;
           case options[2]:
-            d.disconnect();
+            disconnect.initDis();
             break;
           case options[3]:
-            t.toggle();
+            preset.initPre();
+            break;
+          case options[4]:
+            toggle.initTog();
             break;
           default:
             inErr();
@@ -38,16 +39,8 @@ function home() {
     } // home function aka the main menu
 
     function inErr() {
-      let cRGBA = rgba('red');
-        let cAr0 = cRGBA[0];
-        let cAr1 = cRGBA[1];
-        let cAr2 = cRGBA[2];
-        main.l1.color(cAr0, cAr1, cAr2);
-        console.log(
-          `${chalk.red("error")} invalid option chosen. select valid option.`
-        );   
-        console.log('');
-        setInterval(t.toggle(), 5000);
-    } // input error function which changes color to red and pulses
-
+      console.log(chalk.red('error ') + 'please input valid option.');
+      home();
+    } // error function that redirects user to home() if invalid option is input
+    
   exports.home = home;

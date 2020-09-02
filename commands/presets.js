@@ -1,44 +1,44 @@
 const prompts = require('prompts');
 const chalk = require('chalk'); // imported console packages
 
-const m = require('../home');
-const main = require('../main'); // module imports
+const menu = require('../home'); // module imports
 
-function initTog() {
-  let options = ['all', 'l1', 'l2', 'home'];
+const arcade = require('./preset commands/prearcade');
+const movie = require('./preset commands/premovie');
+const ocean = require('./preset commands/preocean'); // preset imports
+
+function initPre() {
+  let options = ['arcade', 'movie', 'ocean', 'home'];
     (async () => {
-      const toggleI = await prompts({
+      const preset = await prompts({
         type: "text",
         name: "input",
         message: `toggle options ${chalk.bgWhite.black(options[0])} ${chalk.bgWhite.black(options[1])} ${chalk.bgWhite.black(options[2])} ${chalk.bgWhite.black(options[3])}`,
       });
   
-      switch(toggleI.input) {
+      switch(preset.input) {
         case options[0]:
-          main.l1.toggle();
-          main.l2.toggle();
-          m.home();
+          arcade.preset();
           break;
         case options[1]:
-          main.l1.toggle();
-          m.home();
+          movie.preset();
           break;
         case options[2]:
-          main.l2.toggle();
-          m.home();
+          ocean.preset();
           break;
         case options[3]:
-          m.home();
+          menu.home();
           break;
         default:
-          inErr();
+          console.log(`${chalk.red('error')} please input valid option`);
+          menu.home();
       }
     })();
   } // toggle function to switch lights on/off
 
 function inErr() {
   console.log(chalk.red('error ') + 'please input valid option.');
-  m.home();
+  initPreset();
   } // error function to notify user of wrong input
 
-exports.initTog = initTog;
+exports.initPre = initPre;
