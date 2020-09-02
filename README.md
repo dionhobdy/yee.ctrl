@@ -13,6 +13,12 @@ Lets the user to change the color of their light by typing in a color name rathe
 #### Disconnect
 Disconnects from the light and notifies the user which light IP they have disconnected from.
 
+#### Multi Bulbs (Aug 2020 Update)
+The Y E E . C T R L app now supports two bulbs! More bulbs will be supported in future updates.
+
+#### Presets (Aug 2020 Update)
+Offers a short list of presets you can use.
+
 #### Toggle
 Turns the connected light on or off.
    
@@ -34,7 +40,7 @@ Here is a brief list of prerequisites needed in order to get started with Y E E 
 
 ## S C R E E N S H O T
 
-![Demostration of Y E E . C T R L in terminal](https://i.imgur.com/AhqCsmO.png)
+![Demostration of Y E E . C T R L in terminal](https://i.imgur.com/CcKIBf4.png)
 
 ## A U T H O R ( S )
 * [Dion Hobdy](https://github.com/hobdydion) - Project Lead/Starter
